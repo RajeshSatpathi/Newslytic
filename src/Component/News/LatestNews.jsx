@@ -1,0 +1,44 @@
+import React, { useEffect, useState } from 'react'
+import bg1 from "../../assets/bg1.jpg"
+function LatestNews() {
+    const [latestNews, setlatestNews] = useState();
+    const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${import.meta.env.VITE_API_KEY}`
+    useEffect(() => {
+        const FetchLatestNews = () => {
+            fetch(url).then(response => response.json()).then(data => setlatestNews(data.articles))
+        }
+        FetchLatestNews()
+
+    }, [])
+
+    return (
+        <div className='w-full container mx-auto my-5 '>
+            <h2 className='text-xl font-semibold'>latest News</h2>
+            <div className='flex gap-5 flex-wrap'>
+                {
+                    latestNews?.slice(0,4).map((news) => (
+
+                        <div className='lg:max-w-[630px] w-full shadow flex  mt-4 '>
+                            <img src={news?.urlToImage ? news.urlToImage : bg1} alt="" className='lg:w-60 w-full ' />
+                            <div className='p-3'>
+                                <a href={news.url} className='font-bold my-1 cursor-pointer hover:text-blue-700'>{news?.title}</a>
+                                <p className='text-sm text-gray-700 my-1'>{news?.description}</p>
+                                <div className='flex justify-between gap-3'>
+                                    <p className='text-sm text-gray-500'>Auther - {news?.author} </p>
+                                    <span className='text-sm text-gray-500'>created at {news?.publishedAt}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    ))
+                }
+             
+            </div>
+            <div className='flex justify-center items-center my-4'>
+            <button className='bg-pink-500 text-white p-2 text-sm cursor-pointer' >View More News</button>
+            </div>
+        </div>
+    )
+}
+
+export default LatestNews
