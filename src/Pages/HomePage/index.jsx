@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -12,32 +12,24 @@ import LatestNews from '../../Component/News/LatestNews';
 
 
 function index() {
+  const [category, setcategory] = useState("general");
+  console.log(category)
   return (
     <div className='w-full '>
-
-      {/* hero secton  */}
-      <div className='h-130'>
-        <div className='swiper-wrapper'>
-          <Swiper
-            modules={[Navigation, Pagination, A11y, Autoplay]}
-            spaceBetween={50}
-            slidesPerView={1}
-            navigation
-            pagination={{ clickable: true }}
-            autoplay={{ delay: 3000 }}
-            autoHeight={false}
-            loop={true}
-          >
-            <SwiperSlide><img src={bg1} alt="Slide 1" /></SwiperSlide>
-            <SwiperSlide><img src={bg2} alt="Slide 2" /></SwiperSlide>
-            <SwiperSlide><img src={bg3} alt="Slide 2" /></SwiperSlide>
-
-          </Swiper>
-        </div>
-      </div>
       <br /><br />
+      {/* <h2 className='mt-5 text-4xl'>Choose your Category</h2> */}
+      <div className='flex gap-5 justify-center mt-10 flex-wrap'>
+        <button className='bg-blue-500 text-sm p-2 w-35 cursor-pointer text-white' onClick={() => setcategory("business")}>Business</button>
+        <button className='bg-blue-500 text-sm p-2 w-35 cursor-pointer text-white' onClick={() => setcategory("entertainment")}>Entertainment</button>
+        <button className='bg-blue-500 text-sm p-2 w-35 cursor-pointer text-white' onClick={() => setcategory("general")}>General</button>
+        <button className='bg-blue-500 text-sm p-2 w-35 cursor-pointer text-white' onClick={() => setcategory("health")}>Health</button>
+        <button className='bg-blue-500 text-sm p-2 w-35 cursor-pointer text-white' onClick={() => setcategory("science")}>Science</button>
+        <button className='bg-blue-500 text-sm p-2 w-35 cursor-pointer text-white' onClick={() => setcategory("sports")}>Sports</button>
+        <button className='bg-blue-500 text-sm p-2 w-35 cursor-pointer text-white' onClick={() => setcategory("technology")}>Technology</button>
+      </div>
+      <br />
       {/* latest news */}
-      <LatestNews/>
+      <LatestNews category={category} />
 
     </div>
   )
