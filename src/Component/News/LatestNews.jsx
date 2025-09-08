@@ -12,16 +12,16 @@ function LatestNews({category}) {
     }, [category])
 
     return (
-        <div className='w-full container mx-auto my-5 '>
+        <div className='w-full container mx-auto my-5 p-3'>
             <h2 className='text-2xl font-semibold'>latest News</h2>
-            <div className='flex gap-5 flex-wrap'>
+            <div className='flex gap-5 flex-wrap justify-center'>
                 {
                     latestNews?.slice(0, 8).map((news) => (
 
-                        <div className='lg:max-w-[630px] w-full shadow flex  mt-4 '>
-                            <img src={news?.urlToImage ? news.urlToImage : bg1} alt="news banner" className='lg:w-60 w-full ' />
+                        <div className='lg:w-[47%] md:w-full w-full shadow flex  mt-4 '>
+                            <img src={news?.urlToImage ? news.urlToImage : bg1} alt="news banner" className='lg:w-45 w-40     ' />
                             <div className='p-3'>
-                                <a href={news.url} className='font-bold my-1 cursor-pointer hover:text-blue-700'>{news?.title}</a>
+                                <a href={news.url} className='font-bold my-1 cursor-pointer hover:text-blue-700 lg:text-md text-sm'>{news?.title}</a>
                                 <p className='text-sm text-gray-700 my-1'>{news?.description}</p>
                                 <div className='flex justify-between gap-3'>
                                     <p className='text-sm text-gray-500'>Auther - {news?.author} </p>
